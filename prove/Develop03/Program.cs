@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Exceeding requirements: Allow user to choose from multiple scriptures
+        // Multiple scripture options for exceeding core requirements
         List<Scripture> scriptures = new List<Scripture>
         {
             new Scripture(new Reference("John", 3, 16), "For God so loved the world that he gave his only begotten Son that whosoever believeth in him should not perish but have everlasting life."),
@@ -33,7 +33,7 @@ class Program
                 break;
             }
 
-            // Exceeding requirements: Ask the user how many words to hide
+            // Asking the user how many words to hide (exceeds requirements)
             Console.WriteLine("How many words would you like to hide?");
             int wordsToHide = int.Parse(Console.ReadLine());
 
@@ -44,4 +44,3 @@ class Program
         Console.WriteLine("All words are hidden. You've memorized the scripture!");
     }
 }
- 
