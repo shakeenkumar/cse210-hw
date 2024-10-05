@@ -23,7 +23,6 @@ public class Scripture
         int hideCount = Math.Min(numberToHide, visibleWords.Count);
         for (int i = 0; i < hideCount; i++)
         {
-            // Hide a random word
             visibleWords[random.Next(visibleWords.Count)].Hide();
         }
     }
