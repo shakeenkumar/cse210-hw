@@ -27,7 +27,7 @@ public class Word
         return _isHidden;
     }
 
-    // Get the word text or underscore if hidden
+    // Get the word text or underscores if hidden
     public string GetDisplayText()
     {
         return _isHidden ? "____" : _text;
