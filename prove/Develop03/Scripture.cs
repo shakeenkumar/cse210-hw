@@ -1,39 +1,43 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace ScriptureMemorizer
+public class Scripture
 {
-    public class Scripture
+    private Reference _reference;
+    private List<Word> _words;
+
+    public Scripture(Reference reference, string text)
     {
-        private Reference _reference;
-        private List<Word> _words;
+        _reference = reference;
+        _words = text.Split(' ').Select(word => new Word(word)).ToList();
+    }
 
-        public Scripture(Reference reference, string text)
+    // Randomly hide a specified number of words
+    public void HideRandomWords(int numberToHide)
+    {
+        Random random = new Random();
+        List<Word> visibleWords = _words.Where(w => !w.IsHidden()).ToList();
+
+        // Ensure we don't hide more words than are visible
+        int hideCount = Math.Min(numberToHide, visibleWords.Count);
+        for (int i = 0; i < hideCount; i++)
         {
-            _reference = reference;
-            _words = new List<Word>();
-
-            foreach (var word in text.Split(' '))
-            {
-                _words.Add(new Word(word));
-            }
+            // Hide a random word
+            visibleWords[random.Next(visibleWords.Count)].Hide();
         }
+    }
 
-        public string DisplayScripture() // Method to display the scripture
-        {
-            var displayText = _reference.Display() + "\n";
-            foreach (var word in _words)
-            {
-                displayText += word.IsHidden ? "___ " : word.Text + " ";
-            }
-            return displayText.Trim();
-        }
+    // Get the full scripture text with some words hidden
+    public string GetDisplayText()
+    {
+        string text = string.Join(" ", _words.Select(word => word.GetDisplayText()));
+        return $"{_reference.GetDisplayText()}: {text}";
+    }
 
-        public void HideRandomWords()
-        {
-            Random random = new Random();
-            int index = random.Next(_words.Count);
-            _words[index].IsHidden = true; // Hide a random word
-        }
+    // Check if all words are hidden
+    public bool IsCompletelyHidden()
+    {
+        return _words.All(word => word.IsHidden());
     }
 }

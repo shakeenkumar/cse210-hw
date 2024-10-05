@@ -1,14 +1,35 @@
-namespace ScriptureMemorizer
+public class Word
 {
-    public class Word
-    {
-        public string Text { get; }
-        public bool IsHidden { get; set; }
+    private string _text;
+    private bool _isHidden;
 
-        public Word(string text)
-        {
-            Text = text;
-            IsHidden = false; // Initially not hidden
-        }
+    public Word(string text)
+    {
+        _text = text;
+        _isHidden = false; // By default, the word is not hidden
+    }
+
+    // Hide the word
+    public void Hide()
+    {
+        _isHidden = true;
+    }
+
+    // Show the word
+    public void Show()
+    {
+        _isHidden = false;
+    }
+
+    // Check if the word is hidden
+    public bool IsHidden()
+    {
+        return _isHidden;
+    }
+
+    // Get the word text or underscore if hidden
+    public string GetDisplayText()
+    {
+        return _isHidden ? "____" : _text;
     }
 }

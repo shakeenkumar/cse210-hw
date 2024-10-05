@@ -1,17 +1,40 @@
-namespace ScriptureMemorizer
+using System;
+
+public class Reference
 {
-    public class Reference
+    private string _book;
+    private int _chapter;
+    private int _verse;
+    private int _endVerse;
+
+    // Constructor for single verse
+    public Reference(string book, int chapter, int verse)
     {
-        private string _reference;
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+        _endVerse = verse; // Same for single verse
+    }
 
-        public Reference(string reference)
+    // Constructor for a range of verses
+    public Reference(string book, int chapter, int startVerse, int endVerse)
+    {
+        _book = book;
+        _chapter = chapter;
+        _verse = startVerse;
+        _endVerse = endVerse;
+    }
+
+    // Display reference as string
+    public string GetDisplayText()
+    {
+        if (_verse == _endVerse)
         {
-            _reference = reference;
+            return $"{_book} {_chapter}:{_verse}";
         }
-
-        public string Display() // Method to display the reference
+        else
         {
-            return _reference;
+            return $"{_book} {_chapter}:{_verse}-{_endVerse}";
         }
     }
 }
