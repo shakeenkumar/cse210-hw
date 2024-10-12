@@ -1,8 +1,8 @@
 public class Comment
 {
-    // Attributes
-    public string Name { get; set; }
-    public string Text { get; set; }
+    // Properties
+    public string Name { get; private set; }
+    public string Text { get; private set; }
 
     // Constructor
     public Comment(string name, string text)
@@ -11,4 +11,3 @@ public class Comment
         Text = text;
     }
 }
-
