@@ -1,14 +1,14 @@
 public class Comment
 {
-    private string _commenterName;
-    private string _text;
+    // Attributes
+    public string Name { get; set; }
+    public string Text { get; set; }
 
-    public Comment(string commenterName, string text)
+    // Constructor
+    public Comment(string name, string text)
     {
-        _commenterName = commenterName;
-        _text = text;
+        Name = name;
+        Text = text;
     }
-
-    public string CommenterName => _commenterName;
-    public string Text => _text;
 }
+
