@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 
+// Class representing a video
 public class Video
 {
     // Properties
-    public string Title { get; private set; }
-    public string Author { get; private set; }
-    public int Length { get; private set; } // Length in seconds
-    private List<Comment> _comments; // List to store comments
+    public string Title { get; private set; }     // Title of the video
+    public string Author { get; private set; }    // Author of the video
+    public int Length { get; private set; }       // Length of the video in seconds
+    private List<Comment> _comments;               // List to store comments
 
-    // Constructor
+    // Constructor to initialize the video properties
     public Video(string title, string author, int length)
     {
         Title = title;
@@ -27,7 +28,7 @@ public class Video
     // Method to get the number of comments
     public int GetCommentCount()
     {
-        return _comments.Count; // Return the count of comments
+        return _comments.Count; // Returns the count of comments
     }
 
     // Method to retrieve all comments
