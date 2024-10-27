@@ -14,4 +14,4 @@ public class SimpleGoal : Goal
     public override string GetStatus() => isComplete ? "[X]" : "[ ]";
 
     public override string GetStringRepresentation() => $"SimpleGoal:{name},{points},{isComplete}";
-}
+}   
