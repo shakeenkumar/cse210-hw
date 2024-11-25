@@ -1,32 +1,37 @@
-// ChecklistGoal.cs
-using System;
-
 public class ChecklistGoal : Goal
 {
-    private int timesCompleted;
-    private int requiredTimes;
-    private int bonusPoints;
+    private int _currentProgress;
+    private int _targetCount;
+    private int _bonusPoints;
 
-    public ChecklistGoal(string name, int points, int requiredTimes, int bonusPoints) : base(name, points)
+    public ChecklistGoal(string name, string description, int points, int targetCount, int bonusPoints)
+        : base(name, description, points)
     {
-        this.requiredTimes = requiredTimes;
-        this.bonusPoints = bonusPoints;
-        this.timesCompleted = 0;
+        _currentProgress = 0;
+        _targetCount = targetCount;
+        _bonusPoints = bonusPoints;
+    }
+
+    public override string DisplayStatus()
+    {
+        string completionStatus = _currentProgress >= _targetCount ? "[X]" : "[ ]";
+        return $"{completionStatus} {Name} ({Description}) - Progress: {_currentProgress}/{_targetCount}";
     }
 
     public override void RecordEvent()
     {
-        timesCompleted++;
-        Console.WriteLine($"Recorded event for {name}. Earned {points} points!");
-
-        if (timesCompleted >= requiredTimes)
+        if (_currentProgress < _targetCount)
         {
-            isComplete = true;
-            Console.WriteLine($"Congratulations! You completed {name} and earned an additional {bonusPoints} points!");
+            _currentProgress++;
+            System.Console.WriteLine($"You earned {Points} points!");
+            if (_currentProgress == _targetCount)
+            {
+                System.Console.WriteLine($"Goal completed! You earned a bonus of {_bonusPoints} points!");
+            }
+        }
+        else
+        {
+            System.Console.WriteLine("Goal already completed.");
         }
     }
-
-    public override string GetStatus() => isComplete ? $"[X] Completed {timesCompleted}/{requiredTimes}" : $"[ ] Completed {timesCompleted}/{requiredTimes}";
-
-    public override string GetStringRepresentation() => $"ChecklistGoal:{name},{points},{timesCompleted},{requiredTimes},{bonusPoints},{isComplete}";
 }

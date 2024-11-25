@@ -1,16 +1,15 @@
-// EternalGoal.cs
-using System;
-
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, int points) : base(name, points) { }
+    public EternalGoal(string name, string description, int points)
+        : base(name, description, points) { }
+
+    public override string DisplayStatus()
+    {
+        return $"[∞] {Name} ({Description}) - {Points} points each time";
+    }
 
     public override void RecordEvent()
     {
-        Console.WriteLine($"You earned {points} points for {name}!");
+        System.Console.WriteLine($"You earned {Points} points!");
     }
-
-    public override string GetStatus() => "[Eternal]";
-
-    public override string GetStringRepresentation() => $"EternalGoal:{name},{points}";
 }

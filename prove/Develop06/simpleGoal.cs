@@ -1,17 +1,28 @@
-// SimpleGoal.cs
-using System;
-
 public class SimpleGoal : Goal
 {
-    public SimpleGoal(string name, int points) : base(name, points) { }
+    private bool _isCompleted;
+
+    public SimpleGoal(string name, string description, int points)
+        : base(name, description, points)
+    {
+        _isCompleted = false;
+    }
+
+    public override string DisplayStatus()
+    {
+        return _isCompleted ? $"[X] {Name} ({Description})" : $"[ ] {Name} ({Description})";
+    }
 
     public override void RecordEvent()
     {
-        isComplete = true;
-        Console.WriteLine($"Completed {name}! You earned {points} points.");
+        if (!_isCompleted)
+        {
+            _isCompleted = true;
+            System.Console.WriteLine($"You earned {Points} points!");
+        }
+        else
+        {
+            System.Console.WriteLine("Goal already completed.");
+        }
     }
-
-    public override string GetStatus() => isComplete ? "[X]" : "[ ]";
-
-    public override string GetStringRepresentation() => $"SimpleGoal:{name},{points},{isComplete}";
-}   
+}

@@ -1,26 +1,16 @@
-// Goal.cs
-using System;
-
 public abstract class Goal
 {
-    protected string name;
-    protected int points;
-    protected bool isComplete;
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public int Points { get; private set; }
 
-    public Goal(string name, int points)
+    protected Goal(string name, string description, int points)
     {
-        this.name = name;
-        this.points = points;
-        this.isComplete = false;
+        Name = name;
+        Description = description;
+        Points = points;
     }
 
-    public string GetName() => name;
-
-    public int GetPoints() => points;
-
-    public bool IsComplete() => isComplete;
-
+    public abstract string DisplayStatus();
     public abstract void RecordEvent();
-    public abstract string GetStatus();
-    public abstract string GetStringRepresentation();
 }
